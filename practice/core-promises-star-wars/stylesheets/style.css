@@ -16,6 +16,10 @@ body {
   background-image: url(../images/star-wars-death.jpg);
 }
 
+.title {
+  color: goldenrod;
+}
+
 ul > li > ul > li {
   margin-left: 30px;
 }
@@ -29,6 +33,7 @@ ul > li > ul > li {
   min-height: 35vh;
   overflow-x: auto;
   overflow-y: auto;
+  color: goldenrod;
 }
 
 #result-container {
