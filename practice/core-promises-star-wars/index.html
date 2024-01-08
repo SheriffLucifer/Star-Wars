@@ -37,6 +37,11 @@
       <section class="section">
         <div class="column is-half is-offset-3">
           <div id="byQueryBlock" class="search">
+            <select name="" id="selection" class="is-large">
+              <option value="people">People</option>
+              <option value="planets">Planets</option>
+              <option value="species">Species</option>
+            </select>
             <input class="is-large input" type="text" placeholder="Search..." />
             <button id="byQueryBtn" class="is-large button">Search</button>
           </div>
@@ -48,7 +53,7 @@
       </div>
 
       <section class="section">
-        <div id="result-container" class="column is-5 is-offset-2">
+        <div id="result-container" class="column is-5 is-offset-3">
           <article class="message is-dark">
             <div class="message-header">
               <p>Primary</p>
