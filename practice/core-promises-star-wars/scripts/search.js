@@ -29,13 +29,19 @@ function searchCharacters() {
   // Вызвать метод поиска персонажей
   starWars
     .searchCharacters(input)
-    .then((characters) => {
+    .then(async (characters) => {
       // Скрыть спиннер после получения результатов
       spinner.style.visibility = "hidden";
 
       // Показать результаты в блоке
       result.style.visibility = "visible";
       const character = characters.results[0];
+      const homeworldId = character.homeworld.split("/").slice(-2, -1)[0];
+      const homeworldData = await starWars.getPlanetsById(homeworldId);
+      const homeworldName = homeworldData.name;
+
+      // Заменить ссылку на планету на её наименование в изначальных данных о персонаже
+      character.homeworld = homeworldName;
       msgHeader.textContent = character.name;
 
       for (let key in character) {
