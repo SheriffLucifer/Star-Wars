@@ -55,13 +55,20 @@ async function searchCharacters() {
     const data = results.results[0];
 
     // Если выбран ресурс "people", заменить ссылку на планету на её наименование
-    if (selectedResource === "people" && data && data.homeworld) {
+    if (data && data.homeworld) {
       const homeworldId = data.homeworld.split("/").slice(-2, -1)[0];
-      const homeworldData = await starWars.getPlanetsById(homeworldId);
-      const homeworldName = homeworldData.name;
+      let homeworldData, homeworldName;
 
-      // Заменить ссылку на планету на её наименование в изначальных данных о персонаже
-      data.homeworld = homeworldName;
+      if (selectedResource === "people") {
+        homeworldData = await starWars.getPlanetsById(homeworldId);
+      } else if (selectedResource === "species") {
+        homeworldData = await starWars.getSpeciesById(homeworldId);
+      }
+
+      if (homeworldData) {
+        homeworldName = homeworldData.name;
+        data.homeworld = homeworldName;
+      }
     }
 
     if (data && data.name) {
