@@ -6,19 +6,19 @@
 // starWars.getPlanetsById(id),
 // starWars.getSpeciesById(id)
 
-// Тут ваш код.
-
 const searchButton = document.getElementById("byQueryBtn");
+const searchButtonId = document.getElementById("byIdBtn");
 const resultContainer = document.getElementById("result-container");
 const spinner = document.querySelector(".spinner");
 const msgHeader = document.querySelector(".message-header");
 const msgBody = document.querySelector(".message-body");
 const resourceSelect = document.getElementById("selection");
+const resourceSelectId = document.getElementById("selectionId");
 
 searchButton.addEventListener("click", searchCharacters);
 
 async function searchCharacters() {
-  const input = document.querySelector(".input").value.trim();
+  const input = document.querySelector(".inputByQuery").value.trim();
   const selectedResource = resourceSelect.value;
   // Отобразить спиннер при выполнении запроса
   spinner.style.visibility = "visible";
@@ -87,6 +87,69 @@ async function searchCharacters() {
   } catch (error) {
     // Обработать ошибку, если она возникнет
     console.error("Error searching characters:", error);
+    // Скрыть спиннер в случае ошибки
+    spinner.style.visibility = "hidden";
+  }
+}
+
+searchButtonId.addEventListener("click", searchById);
+
+async function searchById() {
+  const inputById = document.getElementById("input").value.trim();
+  const selectedResource = resourceSelectId.value;
+
+  // Отобразить спиннер при выполнении запроса
+  spinner.style.visibility = "visible";
+
+  // Скрыть предыдущие результаты
+  msgHeader.textContent = "";
+  msgBody.textContent = "";
+  resultContainer.style.visibility = "hidden";
+
+  let getByIdMethod;
+  switch (selectedResource) {
+    case "people":
+      getByIdMethod = starWars.getCharactersById;
+      break;
+    case "planets":
+      getByIdMethod = starWars.getPlanetsById;
+      break;
+    case "species":
+      getByIdMethod = starWars.getSpeciesById;
+      break;
+    default:
+      console.error("Invalid resource selected");
+      return;
+  }
+
+  try {
+    const result = await getByIdMethod(inputById);
+
+    // Скрыть спиннер после получения результатов
+    spinner.style.visibility = "hidden";
+
+    // Показать результаты в блоке
+    resultContainer.style.visibility = "visible";
+
+    if (result && result.name) {
+      msgHeader.textContent = result.name;
+    }
+
+    for (let key in result) {
+      const value = document.createElement("p");
+      if (key === "homeworld" && selectedResource === "species") {
+        const homeworldId = result.homeworld.split("/").slice(-2, -1)[0];
+        const homeworldData = await starWars.getPlanetsById(homeworldId);
+        const homeworldName = homeworldData.name;
+        value.textContent = `${key}: ${homeworldName}`;
+      } else {
+        value.textContent = `${key}: ${result[key]}`;
+      }
+      msgBody.appendChild(value);
+    }
+  } catch (error) {
+    // Обработать ошибку, если она возникнет
+    console.error("Error getting data by ID:", error);
     // Скрыть спиннер в случае ошибки
     spinner.style.visibility = "hidden";
   }

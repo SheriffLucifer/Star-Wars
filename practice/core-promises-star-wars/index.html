@@ -37,13 +37,36 @@
       <section class="section">
         <div class="column is-half is-offset-3">
           <div id="byQueryBlock" class="search">
-            <select name="" id="selection" class="is-large">
+            <select name="" id="selection" class="is-large select">
               <option value="people">People</option>
               <option value="planets">Planets</option>
               <option value="species">Species</option>
             </select>
-            <input class="is-large input" type="text" placeholder="Search..." />
+            <input
+              class="is-large input inputByQuery"
+              type="text"
+              placeholder="Search..."
+            />
             <button id="byQueryBtn" class="is-large button">Search</button>
+          </div>
+        </div>
+      </section>
+      <p class="title title-is">or</p>
+      <section class="section section-second">
+        <div class="column is-half is-offset-3">
+          <div id="byIdBlock" class="search">
+            <select name="" id="selectionId" class="is-large select">
+              <option value="people">People</option>
+              <option value="planets">Planets</option>
+              <option value="species">Species</option>
+            </select>
+            <input
+              id="input"
+              class="is-large input"
+              type="text"
+              placeholder="Search..."
+            />
+            <button id="byIdBtn" class="is-large button">Get by ID</button>
           </div>
         </div>
       </section>
