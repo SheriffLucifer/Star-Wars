@@ -47,14 +47,11 @@ async function searchCharacters() {
   try {
     const results = await searchMethod(input);
 
-    // Скрыть спиннер после получения результатов
     spinner.style.visibility = "hidden";
 
-    // Показать результаты в блоке
     resultContainer.style.visibility = "visible";
     const data = results.results[0];
 
-    // Если выбран ресурс "people", заменить ссылку на планету на её наименование
     if (data && data.homeworld) {
       const homeworldId = data.homeworld.split("/").slice(-2, -1)[0];
       let homeworldData, homeworldName;
@@ -85,9 +82,7 @@ async function searchCharacters() {
       msgBody.appendChild(value);
     }
   } catch (error) {
-    // Обработать ошибку, если она возникнет
     console.error("Error searching characters:", error);
-    // Скрыть спиннер в случае ошибки
     spinner.style.visibility = "hidden";
   }
 }
@@ -98,10 +93,8 @@ async function searchById() {
   const inputById = document.getElementById("input").value.trim();
   const selectedResource = resourceSelectId.value;
 
-  // Отобразить спиннер при выполнении запроса
   spinner.style.visibility = "visible";
 
-  // Скрыть предыдущие результаты
   msgHeader.textContent = "";
   msgBody.textContent = "";
   resultContainer.style.visibility = "hidden";
@@ -125,10 +118,8 @@ async function searchById() {
   try {
     const result = await getByIdMethod(inputById);
 
-    // Скрыть спиннер после получения результатов
     spinner.style.visibility = "hidden";
 
-    // Показать результаты в блоке
     resultContainer.style.visibility = "visible";
 
     if (result && result.name) {
@@ -148,9 +139,7 @@ async function searchById() {
       msgBody.appendChild(value);
     }
   } catch (error) {
-    // Обработать ошибку, если она возникнет
     console.error("Error getting data by ID:", error);
-    // Скрыть спиннер в случае ошибки
     spinner.style.visibility = "hidden";
   }
 }
