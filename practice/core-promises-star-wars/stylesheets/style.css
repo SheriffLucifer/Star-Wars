@@ -16,12 +16,29 @@ body {
   background-image: url(../images/star-wars-death.jpg);
 }
 
+.title {
+  color: goldenrod;
+}
+
 ul > li > ul > li {
   margin-left: 30px;
 }
 
+.section {
+  padding-bottom: 0;
+}
+
+.section-second {
+  padding-top: 10px;
+}
+
 .search {
   display: flex;
+}
+
+.title-is {
+  display: flex;
+  justify-content: center;
 }
 
 #content {
@@ -29,6 +46,7 @@ ul > li > ul > li {
   min-height: 35vh;
   overflow-x: auto;
   overflow-y: auto;
+  color: goldenrod;
 }
 
 #result-container {
@@ -38,7 +56,7 @@ ul > li > ul > li {
 .spinner {
   visibility: hidden;
   position: absolute;
-  top: 50vh;
+  top: 60vh;
   left: 50vw;
   width: 120px;
   height: 120px;
