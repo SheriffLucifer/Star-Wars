@@ -18,7 +18,7 @@ const starWars = {
   // --- Search Methods ---
 
   searchCharacters: (query: string) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fetch(`https://swapi.dev/api/people/?search=${query}`)
         .then((response) => response.json())
         .then((characters) => resolve(characters))
@@ -27,7 +27,7 @@ const starWars = {
   },
 
   searchPlanets: (query: string) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fetch(`https://swapi.dev/api/planets/?search=${query}`)
         .then((response) => response.json())
         .then((planets) => resolve(planets))
@@ -36,7 +36,7 @@ const starWars = {
   },
 
   searchSpecies: (query: string) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fetch(`https://swapi.dev/api/species/?search=${query}`)
         .then((response) => response.json())
         .then((species) => resolve(species))
