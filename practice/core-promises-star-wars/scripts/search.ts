@@ -6,29 +6,45 @@
 // starWars.getPlanetsById(id),
 // starWars.getSpeciesById(id)
 
-const searchButton = document.getElementById("byQueryBtn");
-const searchButtonId = document.getElementById("byIdBtn");
-const resultContainer = document.getElementById("result-container");
-const spinner = document.querySelector(".spinner");
-const msgHeader = document.querySelector(".message-header");
-const msgBody = document.querySelector(".message-body");
-const resourceSelect = document.getElementById("selection");
-const resourceSelectId = document.getElementById("selectionId");
+interface StarWars {
+  searchCharacters(input: string): Promise<any>;
+  searchPlanets(input: string): Promise<any>;
+  searchSpecies(input: string): Promise<any>;
+  getCharactersById(id: string): Promise<any>;
+  getPlanetsById(id: string): Promise<any>;
+  getSpeciesById(id: string): Promise<any>;
+}
+
+const searchButton = document.getElementById("byQueryBtn") as HTMLButtonElement;
+const searchButtonId = document.getElementById("byIdBtn") as HTMLButtonElement;
+const resultContainer = document.getElementById(
+  "result-container"
+) as HTMLElement;
+const spinner = document.querySelector(".spinner") as HTMLElement;
+const msgHeader = document.querySelector(".message-header") as HTMLElement;
+const msgBody = document.querySelector(".message-body") as HTMLElement;
+const resourceSelect = document.getElementById(
+  "selection"
+) as HTMLSelectElement;
+const resourceSelectId = document.getElementById(
+  "selectionId"
+) as HTMLSelectElement;
 
 searchButton.addEventListener("click", searchCharacters);
 
 async function searchCharacters() {
-  const input = document.querySelector(".inputByQuery").value.trim();
+  const input = (
+    document.querySelector(".inputByQuery") as HTMLInputElement
+  ).value.trim();
   const selectedResource = resourceSelect.value;
-  // Отобразить спиннер при выполнении запроса
+
   spinner.style.visibility = "visible";
 
-  // Скрыть предыдущие результаты
   msgHeader.textContent = "";
   msgBody.textContent = "";
   resultContainer.style.visibility = "hidden";
 
-  let searchMethod;
+  let searchMethod: (input: string) => Promise<any>;
   switch (selectedResource) {
     case "people":
       searchMethod = starWars.searchCharacters;
@@ -90,7 +106,9 @@ async function searchCharacters() {
 searchButtonId.addEventListener("click", searchById);
 
 async function searchById() {
-  const inputById = document.getElementById("input").value.trim();
+  const inputById = (
+    document.getElementById("input") as HTMLInputElement
+  ).value.trim();
   const selectedResource = resourceSelectId.value;
 
   spinner.style.visibility = "visible";
@@ -99,7 +117,7 @@ async function searchById() {
   msgBody.textContent = "";
   resultContainer.style.visibility = "hidden";
 
-  let getByIdMethod;
+  let getByIdMethod: (id: string) => Promise<any>;
   switch (selectedResource) {
     case "people":
       getByIdMethod = starWars.getCharactersById;

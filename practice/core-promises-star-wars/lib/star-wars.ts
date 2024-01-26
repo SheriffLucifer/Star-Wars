@@ -17,7 +17,7 @@
 const starWars = {
   // --- Search Methods ---
 
-  searchCharacters: (query) => {
+  searchCharacters: (query: string) => {
     return new Promise((resolve, reject) => {
       fetch(`https://swapi.dev/api/people/?search=${query}`)
         .then((response) => response.json())
@@ -26,7 +26,7 @@ const starWars = {
     });
   },
 
-  searchPlanets: (query) => {
+  searchPlanets: (query: string) => {
     return new Promise((resolve, reject) => {
       fetch(`https://swapi.dev/api/planets/?search=${query}`)
         .then((response) => response.json())
@@ -35,7 +35,7 @@ const starWars = {
     });
   },
 
-  searchSpecies: (query) => {
+  searchSpecies: (query: string) => {
     return new Promise((resolve, reject) => {
       fetch(`https://swapi.dev/api/species/?search=${query}`)
         .then((response) => response.json())
@@ -46,15 +46,15 @@ const starWars = {
 
   // --- Get By Id Methods ---
 
-  getCharactersById: async (id) =>
+  getCharactersById: async (id: string) =>
     await (await fetch(`https://swapi.dev/api/people/${id}`)).json(),
 
-  getPlanetsById: async (id) =>
+  getPlanetsById: async (id: string) =>
     await (await fetch(`https://swapi.dev/api/planets/${id}`)).json(),
 
-  getSpeciesById: async (id) =>
+  getSpeciesById: async (id: string) =>
     await (await fetch(`https://swapi.dev/api/species/${id}`)).json(),
 
-  getFilmsById: async (id) =>
+  getFilmsById: async (id: string) =>
     await (await fetch(`https://swapi.dev/api/films/${id}`)).json(),
 };
