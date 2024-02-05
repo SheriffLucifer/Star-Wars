@@ -46,15 +46,15 @@ const starWars = {
 
   // --- Get By Id Methods ---
 
-  getCharactersById: async (id: string) =>
+  getCharactersById: async (id: number | string) =>
     await (await fetch(`https://swapi.dev/api/people/${id}`)).json(),
 
-  getPlanetsById: async (id: string) =>
+  getPlanetsById: async (id: number | string) =>
     await (await fetch(`https://swapi.dev/api/planets/${id}`)).json(),
 
-  getSpeciesById: async (id: string) =>
+  getSpeciesById: async (id: number | string) =>
     await (await fetch(`https://swapi.dev/api/species/${id}`)).json(),
 
-  getFilmsById: async (id: string) =>
+  getFilmsById: async (id: number | string) =>
     await (await fetch(`https://swapi.dev/api/films/${id}`)).json(),
 };
